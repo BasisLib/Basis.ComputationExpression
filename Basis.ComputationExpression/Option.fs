@@ -40,7 +40,7 @@ module Option =
         this.Using(
           xs.GetEnumerator(),
           fun itor -> this.While(itor.MoveNext, fun () -> f itor.Current))
-      member this.Delay(f: 'T option * FlowControl) = f
+      member this.Delay(f: unit -> 'T option * FlowControl) = f
       member this.Run(f: unit -> 'T option * FlowControl) = f () |> fst
 
     let option = OptionBuilder ()

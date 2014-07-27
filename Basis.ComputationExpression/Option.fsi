@@ -28,7 +28,7 @@ module Option =
       member TryFinally: (unit -> 'T option * FlowControl) * (unit -> unit) -> 'T option * FlowControl
       member While: (unit -> bool) * (unit -> 'T option * FlowControl) -> 'T option * FlowControl
       member For: #seq<'T> * ('T -> 'U option * FlowControl) -> 'U option * FlowControl
-      member Delay: ('T option * FlowControl) -> 'T option * FlowControl
+      member Delay: (unit -> 'T option * FlowControl) -> (unit -> 'T option * FlowControl)
       member Run: (unit -> 'T option * FlowControl) -> 'T option
     end
 
