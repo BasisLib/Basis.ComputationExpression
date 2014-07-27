@@ -39,3 +39,27 @@ module MinimumComputationTest =
         return! g y
       }
     )
+
+  module WithZeroTest =
+    open Basis.ComputationExpression.Option.MinimumComputation.WithZero
+
+    [<Test>]
+    let ``can use zero``() =
+      option { () } |> should equal None
+
+  module WithUsingTest =
+    open Basis.ComputationExpression.Option.MinimumComputation.WithUsing
+
+    type Disposable() =
+      interface System.IDisposable with
+        member this.Dispose() = ()
+
+    [<Test>]
+    let ``can use use``() =
+      option {
+        use x = new Disposable()
+        use! y = Some (new Disposable())
+        use! z = None
+        return 42
+      } |> should equal None
+        

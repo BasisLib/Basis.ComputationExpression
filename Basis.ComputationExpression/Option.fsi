@@ -15,6 +15,14 @@ module Option =
 
     val option: OptionBuilder
 
+    module WithZero =
+      type OptionBuilder with
+        member Zero: unit -> 'T option
+
+    module WithUsing =
+      type OptionBuilder with
+        member Using<'T, 'U when 'T :> IDisposable> : 'T * ('T -> 'U) -> 'U
+
   module FullComputation =
     type OptionBuilder = class
       new: unit -> OptionBuilder

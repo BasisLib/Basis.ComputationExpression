@@ -13,6 +13,16 @@ module Option =
 
     let option = OptionBuilder ()
 
+    module WithZero =
+      type OptionBuilder with
+        member this.Zero() = None
+
+    module WithUsing =
+      type OptionBuilder with
+        member this.Using(x: #IDisposable, f) =
+          try f x
+          finally match box x with null -> () | notNull -> x.Dispose()
+
   module FullComputation =
     type OptionBuilder () =
       member this.Zero() = None, Continue
