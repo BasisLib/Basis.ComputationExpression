@@ -5,7 +5,7 @@ open System
 type FlowControl
 
 module Option =
-  module Simple =
+  module MinimumComputation =
     type OptionBuilder = class
       new: unit -> OptionBuilder
       member Bind: 'T option * ('T -> 'U option) -> 'U option
@@ -15,7 +15,7 @@ module Option =
 
     val option: OptionBuilder
 
-  module State =
+  module FullComputation =
     type OptionBuilder = class
       new: unit -> OptionBuilder
       member Zero: unit -> 'T option * FlowControl

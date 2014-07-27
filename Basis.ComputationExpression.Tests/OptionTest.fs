@@ -6,8 +6,8 @@ open FsCheck
 open FsCheck.NUnit
 
 [<TestFixture>]
-module SimpleTest =
-  open Basis.ComputationExpression.Option.Simple
+module MinimumComputationTest =
+  open Basis.ComputationExpression.Option.MinimumComputation
 
   [<Test>]
   let ``return x >>= f =  f x`` () =

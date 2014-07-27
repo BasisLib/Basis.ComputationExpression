@@ -5,7 +5,7 @@ open System
 type FlowControl = Break | Continue
 
 module Option =
-  module Simple =
+  module MinimumComputation =
     type OptionBuilder () =
       member this.Bind(x, f) = Option.bind f x
       member this.Return(x) = Some x
@@ -13,7 +13,7 @@ module Option =
 
     let option = OptionBuilder ()
 
-  module State =
+  module FullComputation =
     type OptionBuilder () =
       member this.Zero() = None, Continue
       member this.Return(x) = Some x, Break
